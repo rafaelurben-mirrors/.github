@@ -15,5 +15,5 @@ jobs:
         run: |
           git clone --bare https://git.sr.ht/~martijnbraam/pyatem src.git
           cd src.git
-          git remote add github https://$GH_MIRRORS_TOKEN@github.com/rafaelurben/pyatem-mirror.git
+          git remote set-url github https://$GH_MIRRORS_TOKEN@github.com/rafaelurben/pyatem-mirror.git
           git push --mirror github
