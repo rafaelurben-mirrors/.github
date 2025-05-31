@@ -1,0 +1,19 @@
+name: Update mirrors
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  update-mirrors:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Update rafaelurben/pyatem-mirror from https://git.sr.ht/~martijnbraam/pyatem
+        run: |
+          git clone --bare https://git.sr.ht/~martijnbraam/pyatem src.git
+          cd src.git
+          git remote add github https://$GH_MIRRORS_TOKEN@github.com/rafaelurben/pyatem-mirror.git
+          git push --mirror github
