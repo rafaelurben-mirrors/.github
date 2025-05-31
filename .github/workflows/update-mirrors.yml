@@ -11,6 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if token is set
+        run: |
+          if [ -z "$GH_MIRRORS_TOKEN" ]; then
+            echo "Error: GH_MIRRORS_TOKEN is not set"
+            exit 1
+          fi
+
       - name: Update rafaelurben/pyatem-mirror from https://git.sr.ht/~martijnbraam/pyatem
         run: |
           git clone --bare https://git.sr.ht/~martijnbraam/pyatem src.git
