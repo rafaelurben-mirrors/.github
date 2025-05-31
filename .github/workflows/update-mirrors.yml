@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - name: Check if token is set
+        env:
+          GH_MIRRORS_TOKEN: ${{ secrets.GH_MIRRORS_TOKEN }}
         run: |
           if [ -z "$GH_MIRRORS_TOKEN" ]; then
             echo "Error: GH_MIRRORS_TOKEN is not set"
@@ -19,6 +21,8 @@ jobs:
           fi
 
       - name: Update rafaelurben/pyatem-mirror from https://git.sr.ht/~martijnbraam/pyatem
+        env:
+          GH_MIRRORS_TOKEN: ${{ secrets.GH_MIRRORS_TOKEN }}
         run: |
           git clone --bare https://git.sr.ht/~martijnbraam/pyatem src.git
           cd src.git
