@@ -14,14 +14,14 @@ jobs:
       matrix:
         include:
           - source: https://git.sr.ht/~martijnbraam/pyatem
-            source_name: git.sr.ht/~martijnbraam/pyatem
-            target: https://${{ secrets.GH_MIRRORS_TOKEN }}@github.com/rafaelurben/pyatem-mirror.git
-            target_name: rafaelurben/pyatem-mirror
+            github_repo: rafaelurben/pyatem-mirror
  
     steps:
-      - name: Update ${{ matrix.target_name }} from ${{ matrix.source_name }}
+      - name: Update ${{ matrix.github_repo }} from ${{ matrix.source }}
+        env:
+          GH_MIRRORS_TOKEN: ${{ secrets.GH_MIRRORS_TOKEN }}
         run: |
           git clone --bare ${{ matrix.source }} src.git
           cd src.git
-          git remote add target ${{ matrix.target }}
-          git push --mirror target
+          git remote add github https://$GH_MIRRORS_TOKEN@github.com/${{ matrix.github_repo }}
+          git push --mirror github
