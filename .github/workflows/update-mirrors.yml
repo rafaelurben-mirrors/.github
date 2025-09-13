@@ -14,7 +14,7 @@ jobs:
       matrix:
         include:
           - source: https://git.sr.ht/~martijnbraam/pyatem
-            github_repo: rafaelurben/pyatem-mirror
+            github_repo: rafaelurben-mirrors/pyatem
  
     steps:
       - name: Update ${{ matrix.github_repo }} from ${{ matrix.source }}
